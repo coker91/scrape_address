@@ -1,13 +1,10 @@
 import requests
 import pandas as pd
-import numpy as np
 import logging
 import datetime
 import time
 import pytz
 import threading, queue
-#library untuk koneksi ke mysql
-#import mysql.connector as mysql
 
 from requests import get
 from bs4 import BeautifulSoup
@@ -97,16 +94,16 @@ for page in range(1, num_range):
     q.put(scrapping(page))
 
 addresses = pd.DataFrame({
-	'address' : address,
-	'city'    : city,
-    'province': province,
-    'postal_code' : postal_code,
-    'phone'	  : phone,
-	'first_name' : first_name,
-	'last_name' : last_name,
-	'url': url,
-	'created_at': created_at,
-	'updated_at': updated_at
+	'address' 	: address,
+	'city'    	: city,
+    	'province'	: province,
+    	'postal_code' 	: postal_code,
+    	'phone'	  	: phone,
+	'first_name' 	: first_name,
+	'last_name' 	: last_name,
+	'url'		: url,
+	'created_at'	: created_at,
+	'updated_at'	: updated_at
     })
 
 print(addresses.tail())
@@ -117,15 +114,6 @@ conversion = datetime.timedelta(seconds= t1)
 conversion_time = str(conversion)
 print(f"Waktu yang diperlukan : " + conversion_time)
 logging.info("Waktu yang diperlukan : " + conversion_time)
-
-#drop table
-#mycursor.execute("DROP TABLE data")
-
-#cara membuat database
-#mycursor.execute("CREATE DATABASE scrape_alamat")
-
-#cara membuat tabel
-#mycursor.execute("CREATE TABLE data (id INT(10), address VARCHAR(255), city VARCHAR(50), phone VARCHAR(15), first_name VARCHAR(50), last_name VARCHAR(50), created_at TIMESTAMP, updated_at TIMESTAMP)")
 
 #import library engine sql
 import pymysql
